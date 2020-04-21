@@ -19,8 +19,7 @@ class LinkedList:
         new_node = ListNode(value)
 
         # If head does not exist
-        # Point the head to the new node item
-        # Point the tail to the new node item
+        # Point the head and the tail to the new node item
         if not self.head:
             self.head = new_node
             self.tail = new_node

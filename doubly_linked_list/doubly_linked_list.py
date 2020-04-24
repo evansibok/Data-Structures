@@ -128,13 +128,48 @@ class DoublyLinkedList:
     List and inserts it as the new head node of the List."""
 
     def move_to_front(self, node):
-        pass
+        # if the node is the head then do nothing
+        if node is self.head:
+            return
+
+        # Grab the value of the node
+        value = node.value
+
+        # If the node is the tail
+        if node is self.tail:
+            # Delete the node from tail
+            self.remove_from_tail()
+        # Otherwise just delete the node
+        else:
+            # Just delete the node (we already have the value so we can add it to the head later)
+            node.delete()
+            # After deleting, decrement the list
+            self.length -= 1
+        # Add the value to the head
+        self.add_to_head(value)
 
     """Removes the input node from its current spot in the 
     List and inserts it as the new tail node of the List."""
 
     def move_to_end(self, node):
-        pass
+        if not self.head:
+            return
+
+        # Grab the value of the node
+        value = node.value
+
+        # If the node is the head
+        if node is self.head:
+            # delete the node
+            self.remove_from_head()
+        # otherwise
+        else:
+            # if it's another node, just delete the node
+            node.delete()
+            # and decrement the list length
+            self.length -= 1
+        # add the value to the tail
+        self.add_to_tail(value)
 
     """Removes a node from the list and handles cases where
     the node was the head or the tail"""
@@ -172,4 +207,24 @@ class DoublyLinkedList:
     """Returns the highest value currently in the list"""
 
     def get_max(self):
-        pass
+        # If no head exists the list is empty
+        if not self.head:
+            return None
+        # Starting from the head
+        # set the current head value as the max value
+        # because it will be the first value we have
+        max_value = self.head.value
+        # set the current head as the current node
+        cur_node = self.head
+
+        # while there's a current head
+        while cur_node:
+            # check if the value of the current node (in this case, head)
+            # is greater than the existing max value
+            # if it is, set the max value to the current node's value
+            if cur_node.value > max_value:
+                max_value = cur_node.value
+            # to continue iterating (increment the traversal through the current node)
+            cur_node = cur_node.next
+        # return the max value
+        return max_value

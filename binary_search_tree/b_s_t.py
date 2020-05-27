@@ -30,11 +30,11 @@ class BinarySearchTree:
             if self.right is None:
                 # insert the bst to the right
                 self.right = node
-                self.right.value
+                return self.right.value
             # otherwise
             else:
                 # call insert recursively on the right
-                self.right.insert(value)
+                return self.right.insert(value)
         # if the value is less than or equal to the root node's value
         # if it is less than
         else:
@@ -43,14 +43,45 @@ class BinarySearchTree:
             if self.left is None:
                 # insert the bst to the left
                 self.left = node
-                self.left.value
+                return self.left.value
             # otherwise
             else:
                 # call insert recursively on the left
-                self.left.insert(value)
+                return self.left.insert(value)
 
     def contains(self, target):
-        pass
+        # if target matches value
+        if target == self.value:
+            # return True
+            return True
+
+        #  # if root node is empty
+        if self.value is None:
+            # return False
+            return False
+        # If target is less than root's value
+        elif target < self.value:
+           # -> if left node is empty
+            if self.left is None:
+                # -> if it is
+                # -> return False
+                return False
+            # if it isn't empty
+            else:
+                # call contains recursively on the left
+                return self.left.contains(target)
+        # otherwise
+        # If target is greater than root's value
+        elif target > self.value:
+            # -> if right node is empty
+            if self.right is None:
+                # -> if it is
+                # -> return False
+                return False
+            # if it isn't empty
+            else:
+                # call contains recursively on the right
+                return self.right.contains(target)
 
     # Return the maximum value found in the tree
     def get_max(self):

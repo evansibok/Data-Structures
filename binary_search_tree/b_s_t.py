@@ -12,35 +12,42 @@ class BinarySearchTree:
 
     # Insert the given value into the tree
     def insert(self, value):
-        # Create a new node
-        new_node = BinarySearchTree(value)
-
-        # Starting at the root,
-        # Check if there is a root, if not, the root becomes the new node
+        # Initialize a node
+        node = BinarySearchTree(value)
+        # no root node
+        # If no root node
         if self.value is None:
-            self.value = new_node.value
+            # Insert the bst with the value passed in
+            self.value = node.value
             return self.value
 
-        # If there is a root, check if the value of the new node is greater than or less than the value of the root
-        # If it is greater,
+        # if there's a root node
+        # check if the value is greater than or equal to the root node's value
+        # if it is greater than
         if value >= self.value:
-            # -> Check to see if there is a node to the right
-            if self.right is not None:
-                # -> If there is, then move to that node and repeat these steps
+            # check if no right node exists
+            # if right node is empty
+            if self.right is None:
+                # insert the bst to the right
+                self.right = node
+                self.right.value
+            # otherwise
+            else:
+                # call insert recursively on the right
                 self.right.insert(value)
-        # If there is not, add that node as the right property
-            else:
-                self.right = new_node
-
-        # If it is less,
+        # if the value is less than or equal to the root node's value
+        # if it is less than
         else:
-            # check to see if there is a node to the left
-            # -> If there is then move to that node and repeat these steps
-            if self.left is not None:
-                self.left.insert(value)
-        # If there is not, add that node as the left property
+            # check if no left node exists
+            # if left node is empty
+            if self.left is None:
+                # insert the bst to the left
+                self.left = node
+                self.left.value
+            # otherwise
             else:
-                self.left = new_node
+                # call insert recursively on the left
+                self.left.insert(value)
 
     def contains(self, target):
         pass
@@ -81,3 +88,12 @@ class BinarySearchTree:
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
         pass
+
+
+if __name__ == '__main__':
+    bst = BinarySearchTree(5)
+
+    print(bst.insert(2))
+    print(bst.insert(3))
+    print(bst.insert(7))
+    print(bst.insert(6))

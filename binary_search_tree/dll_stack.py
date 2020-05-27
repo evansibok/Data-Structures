@@ -1,4 +1,4 @@
-from doubly_linked_list import DoublyLinkedList
+from d_ll import DoublyLinkedList
 
 
 class Stack:
